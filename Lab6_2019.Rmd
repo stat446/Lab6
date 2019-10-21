@@ -1,0 +1,52 @@
+---
+title: "Lab 5"
+author: "Group Member Names - here"
+output:
+  pdf_document: default
+---
+
+```{r, include = F}
+library(dplyr)
+library(readr)
+library(knitr)
+set.seed(10212019)
+```
+
+
+## Lab Overview
+All students attending class in the group can turn in a single document with each participants name. Students not attending class will need to complete their own lab.
+
+Download the movies earnings dataset. In today's lab, we are interested in using the budget of a film to estimate the earnings.
+
+
+```{r}
+movies <- read_csv('http://math.montana.edu/ahoegh/teaching/stat446/movies_earnings.csv')
+movies
+```
+
+
+#### 1. (5 points)
+Before looking at the data, summarize the relationship you expect between the budget of the film and the earnings.
+
+#### 2. (5 points)
+A SRS of 100 movies has been taken for you from the dataset. Create a plot of earnings vs. budget for these movies. How does this figure match your expectations?
+
+```{r}
+movies_sample <- movies %>% sample_n(100)
+```
+
+
+#### 3. (5 points)
+Report a point estimate of the population ratio $B$. Where does this show up on the graphic you created for problem 1?
+
+#### 4. (5 points)
+Assume that you know the population mean for the movie budget,
+```{r}
+xbar_U <- movies %>% summarize(mean(budget)) %>% pull()
+```
+
+using the 100 samples, calculate the mean earnings per film with both the SRS estimator and the ratio estimator.
+
+#### 5. (5 points)
+
+Discuss which esimator from part 4 you prefer.
